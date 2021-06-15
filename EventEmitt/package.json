@@ -1,0 +1,15 @@
+{
+  "name": "EventEmitt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^2.3.7"
+  },
+  "dependencies": {
+    "mitt": "^2.1.0"
+  },
+  "scripts": {
+    "dev": "vite"
+  }
+}
