@@ -4,3 +4,4 @@
 
 ## 例表
 - [准时的定时器](timer/README.md)
+- [事件总线 EventEmitter](EventEmitt/README.md)
