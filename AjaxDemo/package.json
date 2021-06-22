@@ -1,0 +1,9 @@
+{
+  "name": "AjaxDemo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^2.3.7"
+  }
+}
