@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>测试CORS和JSONP</title>
+</head>
+<body>
+  <button id="cors">CORS</button>
+  <button id="jsonp">JSONP</button>
+  <script>
+    const corsBtn = document.getElementById("cors");
+    const jsonpBtn = document.getElementById("jsonp");
+
+    corsBtn.addEventListener("click", function() {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function() {
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+          console.log(JSON.parse(xhr.response));
+        }
+      }
+
+      xhr.open("get", "http://localhost:3030/cors");
+
+      xhr.send(null);
+    })
+    jsonpBtn.addEventListener("click", function () {
+      const scriptTag = document.createElement("script");
+      scriptTag.setAttribute("type", "text/javascript");
+      scriptTag.src = "http://localhost:3030/jsonp?callback=handleJsonp";
+      document.body.appendChild(scriptTag);
+    })
+    function handleJsonp(response) {
+      console.log(response);
+    }
+  </script>
+</body>
+</html>
