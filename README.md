@@ -7,3 +7,4 @@
 - [事件总线 EventEmitter](EventEmitt/README.md)
 - [Ajax](AjaxDemo/README.md)
 - [跨域处理](cors/README.md)
+- [vue的响应式原理](vue-reactive/README.md)
