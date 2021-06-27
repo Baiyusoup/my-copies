@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迷你路由</title>
+  <style>
+    .router {
+      margin: 100px;
+    }
+    a {
+      padding: 10px 15px;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="router">
+    <a href="#a">a页面</a>
+    <a href="#b">b页面</a>
+    <a href="#c">c页面</a>
+  </div>
+  <script>
+    window.addEventListener('hashchange', e => {
+      console.log("hash改变了", e);
+    })
+
+
+    window.addEventListener('load', e => {
+        console.log("开始进入页面了");
+        console.log(window.location);
+      })
+
+  </script>
+  <!-- <script src="./mini-router.js"></script> -->
+</body>
+</html>
