@@ -1,0 +1,12 @@
+{
+  "name": "vue-diff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "vite": "^2.3.8"
+  },
+  "scripts": {
+    "dev": "vite"
+  }
+}
