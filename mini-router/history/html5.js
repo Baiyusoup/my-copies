@@ -13,7 +13,6 @@ export class HTML5History extends History {
     }
 
     const handleRoutingEvent = () => {
-      const current = this.current;
       const location = getLocation(this.base);
       if (this.current === START && location === this._startLocation) {
         return;
@@ -30,7 +29,14 @@ export class HTML5History extends History {
   }
 
   getCurrentLocation() {
-    return getLocation();
+    return getLocation(this.base);
+  }
+
+  ensureURL(push) {
+    if (getLocation(this.base) !== this.current.fullPath) {
+      const current = cleanPath(this.base + this.current.fullPath)
+      push ? pushState(current) : replaceState(current);
+    }
   }
 }
 
@@ -39,5 +45,28 @@ function getLocation(base) {
   const pathLowerCase = path.toLowerCase();
   const baseLowerCase = base.toLowerCase();
 
+  if (base && ((pathLowerCase === baseLowerCase) ||
+    (pathLowerCase.indexOf(cleanPath(baseLowerCase + '/')) === 0))) {
+    path = path.slice(base.length);
+  }
+
   return (path || '/') + window.location.search + window.location.hash;
+}
+
+
+function cleanPath (path) {
+  return path.replace(/\/\//g, '/')
+}
+
+
+function pushState(url, replace) {
+  const history = window.history;
+  if (replace) {
+    history.replaceState({}, '', url);
+  } else {
+    history.pushState({ key: ''}, '', url);
+  }
+}
+function replaceState(url) {
+  pushState(url, true)
 }
