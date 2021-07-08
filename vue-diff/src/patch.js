@@ -1,6 +1,11 @@
-function isVnode(vnode) {
-  return vnode.sel !== undefined
+import {
+  vnode
+} from './vnode';
+
+function emptyNodeAt(elm) {
+  return vnode(elm.tagName.toLocaleLowerCase(), {}, undefined, elm, undefined);
 }
+
 
 function sameNode(oldNode, newNode) {
   return oldNode.sel === newNode.sel && oldNode.key === newNode.key;
@@ -16,6 +21,7 @@ function createElm(vnode) {
       realDom.appendChild(createElm(child));
     })
   }
+  vnode.elm = realDom;
   return realDom;
 }
 
@@ -28,14 +34,21 @@ function isUnDef(v) {
 }
 
 export function patch(oldVNode, vNode) {
+  const isRealElement = isDef(oldVNode.nodeType);
+  if (isRealElement) {
+    oldVNode = emptyNodeAt(oldVNode);
+  }
+
   // 如果两个是同一个节点，调用patchNode
   if (sameNode(oldVNode, vNode)) {
     patchVNode(oldVNode, vNode);
   } else {
     // 销毁旧节点，将vNode变成真实dom插入旧节点所在的位置
     const realDom = createElm(vNode);
-    oldVNode.elm.parentNode.insertBefore(realDom, oldVNode.elm);
-    oldVNode.elm.parentNode.removeChild(oldVNode.elm);
+    const el = oldVNode.elm;
+    debugger
+    el.parentNode.insertBefore(realDom, el);
+    el.parentNode.removeChild(el);
   }
 
 }
