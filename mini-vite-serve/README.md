@@ -12,3 +12,10 @@
 
 ### 处理css文件
 对于css文件的处理，基本流程就是根据url和path得到绝对路径，然后读取文件。接下来就是创建style标签，将文件内容去掉换行后插入到style标签内。这些工作是js做的，因此我们要将这些代码弄成字符串放到响应体中，设置响应头的Content-Type为application/javascript，这样浏览器在收到响应时，就会当成js文件来解析，运行
+
+### 处理vue文件
+对于vue文件，则需要借助@vue/compiler-dom和@vue/compiler-sfc这两个库来完成了。发起.vue的请求后，先把script解析出来，然后里面加上请求template和css的import语句，把template解析成render函数，返回拼成一个组件
+
+
+### 吐槽
+我真的傻逼了，解析vue文件的时候，由于之前对导入语句进行重写的时候正则表达式没给from单词前面加空格，导致所有的from语句，比如opt.from这些被重写，然后就报错。我去翻@runtime-core的源码才发现傻逼正则写法错了，把尤大写好的代码替换掉了。
