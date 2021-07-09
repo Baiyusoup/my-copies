@@ -8,3 +8,4 @@
 - [Ajax](AjaxDemo/README.md)
 - [跨域处理](cors/README.md)
 - [vue的响应式原理](vue-reactive/README.md)
+- [乞丐版的mini-vue-server](mini-vite-serve/README.md)
