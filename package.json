@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "just something copying",
   "main": "index.js",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/Baiyusoup/something/issues"
   },
-  "homepage": "https://github.com/Baiyusoup/something#readme"
+  "homepage": "https://github.com/Baiyusoup/something#readme",
+  "devDependencies": {
+    "react": "^17.0.2"
+  }
 }
